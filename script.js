@@ -1,6 +1,6 @@
 // Write your JavaScript code here!
 
-
+window.addEventListener('load', () => {
 fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
    response.json().then(function (json) {
       let index = Math.floor(Math.random()*6);
@@ -34,14 +34,14 @@ let cargoStatus = document.getElementById("cargoStatus");
 
 let form = document.getElementById("launchForm");
 form.addEventListener("submit", (event) => {
-
-  const letters = /^[a-zA-Z]+$/;
-  const numbers = /^[0-9]+$/;
-   if (pilotName.value === '' || !letters.test(pilotName.value)) {
+   event.preventDefault();
+   const letters = /^[a-zA-Z]+$/;
+   const numbers = /^[0-9]+$/;
+   if (!letters.test(pilotName.value)) {
       alert("please enter a Pilots name");
    }
 
-   if (copilotName.value === '' || !letters.test(copilotName.value)) {
+   if (!letters.test(copilotName.value)) {
       alert("please enter a Copilots name");
    } 
    
@@ -51,7 +51,7 @@ form.addEventListener("submit", (event) => {
    if (!numbers.test(cargoMass.value)) {
       alert("please enter a valid cargo mass number")
    }
-   event.preventDefault();
+   
 
    if (fuelLevel.value <=10000) {
       faultyItems.style.visibility = "visible";
@@ -74,8 +74,7 @@ form.addEventListener("submit", (event) => {
       launchStatus.style.color = 'green';
       pilotStatus.innerText = `${pilotName.value} Ready`;
       copilotStatus.innerText = `${copilotName.value} Ready`;
-      console.log(pilotName.value)
 
    }
 });
-   
+});
