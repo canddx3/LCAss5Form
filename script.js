@@ -35,7 +35,7 @@ let cargoStatus = document.getElementById("cargoStatus");
 let form = document.getElementById("launchForm");
 form.addEventListener("submit", (event) => {
    event.preventDefault();
-   const letters = /^[a-zA-Z]+$/;
+   const letters = /^[a-zA-Z\s]+$/;
    const numbers = /^[0-9]+$/;
    if (!letters.test(pilotName.value)) {
       alert("please enter a Pilots name");
@@ -53,7 +53,7 @@ form.addEventListener("submit", (event) => {
    }
    
 
-   if (fuelLevel.value <=10000) {
+   if (fuelLevel.value <10000) {
       faultyItems.style.visibility = "visible";
       launchStatus.innerText = 'Shuttle not ready for launch';
       launchStatus.style.color = 'red';
